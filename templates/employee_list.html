@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid py-5">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+
+            <h1 class="fw-bold display-5 text-dark mb-2">
+                Employee Directory
+            </h1>
+
+            <p class="text-muted fs-5 mb-0">
+                Manage employee records, profiles, and company information.
+            </p>
+
+        </div>
+
+        <a href="{% url 'add_employee' %}"
+           class="btn btn-success rounded-pill px-5 py-3 shadow-sm fw-semibold">
+
+            + Add Employee
+
+        </a>
+
+    </div>
+
+    <!-- Main Card -->
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden employee-card">
+
+        <!-- Top Bar -->
+        <div class="p-4 text-white"
+             style="background: linear-gradient(90deg, #0f172a, #1e3a8a);">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <h3 class="fw-bold mb-1">
+                        Employee Records
+                    </h3>
+
+                    <p class="mb-0 text-light">
+                        View and manage all registered employees.
+                    </p>
+
+                </div>
+
+                <div class="employee-count">
+
+                    Total:
+                    <span class="fw-bold">
+                        {{ employees|length }}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Table -->
+        <div class="card-body p-4">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle employee-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>#</th>
+                        <th>Employee</th>
+                        <th>Department</th>
+                        <th>Contact</th>
+                        <th>Salary</th>
+                        <th class="text-center">Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for employee in employees %}
+
+                    <tr>
+
+                        <!-- Number -->
+                        <td class="fw-bold text-muted">
+                            {{ forloop.counter }}
+                        </td>
+
+                        <!-- Employee -->
+                        <td>
+
+                            <div class="d-flex align-items-center gap-3">
+
+                                {% if employee.profile_image %}
+
+                                <img src="{{ employee.profile_image.url }}"
+                                     class="employee-img">
+
+                                {% else %}
+
+                                <div class="employee-placeholder">
+                                    👤
+                                </div>
+
+                                {% endif %}
+
+                                <div>
+
+                                    <h6 class="fw-bold mb-1">
+                                        {{ employee.name }}
+                                    </h6>
+
+                                    <small class="text-muted">
+                                        {{ employee.email }}
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <!-- Department -->
+                        <td>
+
+                            <span class="badge department-badge">
+                                {{ employee.department }}
+                            </span>
+
+                        </td>
+
+                        <!-- Contact -->
+                        <td>
+
+                            <div class="fw-semibold">
+                                {{ employee.phone }}
+                            </div>
+
+                            <small class="text-muted">
+                                Employee Contact
+                            </small>
+
+                        </td>
+
+                        <!-- Salary -->
+                        <td>
+
+                            <span class="salary-box">
+
+                                ₹ {{ employee.salary }}
+
+                            </span>
+
+                        </td>
+
+                        <!-- Actions -->
+                        <td>
+
+                            <div class="d-flex justify-content-center gap-2">
+
+                                <a href="{% url 'employee_detail' employee.id %}"
+                                   class="btn btn-primary btn-sm rounded-pill px-3">
+
+                                    View
+
+                                </a>
+
+                                <a href="{% url 'update_employee' employee.id %}"
+                                   class="btn btn-warning btn-sm rounded-pill px-3">
+
+                                    Edit
+
+                                </a>
+
+                                <a href="{% url 'delete_employee' employee.id %}"
+                                   class="btn btn-danger btn-sm rounded-pill px-3">
+
+                                    Delete
+
+                                </a>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="6" class="text-center py-5">
+
+                            <h4 class="text-muted">
+                                No Employees Found
+                            </h4>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Styling -->
+<style>
+
+    .employee-card{
+        transition:0.3s ease;
+        background:white;
+    }
+
+    .employee-card:hover{
+        transform:translateY(-3px);
+        box-shadow:0 18px 45px rgba(0,0,0,0.12)!important;
+    }
+
+    .employee-table thead tr{
+        border-bottom:2px solid #e2e8f0;
+    }
+
+    .employee-table th{
+        padding:18px!important;
+        font-size:15px;
+        color:#334155;
+        font-weight:700;
+        border:none!important;
+    }
+
+    .employee-table td{
+        padding:20px 18px!important;
+        vertical-align:middle;
+        border-color:#f1f5f9!important;
+    }
+
+    .employee-table tbody tr{
+        transition:0.3s;
+    }
+
+    .employee-table tbody tr:hover{
+        background:#f8fafc;
+    }
+
+    .employee-img{
+        width:75px;
+        height:75px;
+        object-fit:cover;
+        border-radius:20px;
+        border:3px solid white;
+        box-shadow:0 4px 15px rgba(0,0,0,0.12);
+    }
+
+    .employee-placeholder{
+        width:75px;
+        height:75px;
+        border-radius:20px;
+        background:#e2e8f0;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:28px;
+    }
+
+    .department-badge{
+        background:#dbeafe;
+        color:#1d4ed8;
+        padding:10px 16px;
+        border-radius:999px;
+        font-size:14px;
+        font-weight:600;
+    }
+
+    .salary-box{
+        background:#dcfce7;
+        color:#15803d;
+        padding:10px 18px;
+        border-radius:999px;
+        font-weight:700;
+        display:inline-block;
+    }
+
+    .employee-count{
+        background:rgba(255,255,255,0.15);
+        padding:10px 18px;
+        border-radius:999px;
+        font-size:15px;
+    }
+
+</style>
+
+{% endblock %}

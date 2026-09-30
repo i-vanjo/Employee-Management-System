@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row justify-content-center align-items-center"
+         style="min-height: 85vh;">
+
+        <div class="col-md-6 col-lg-5">
+
+            <!-- Login Card -->
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+                <!-- Top Section -->
+                <div class="bg-dark text-white text-center p-4">
+
+                    <h1 class="fw-bold mb-2">
+                        Employee Management System
+                    </h1>
+
+                    <p class="mb-0 text-light">
+                        Welcome back! Login to continue.
+                    </p>
+
+                </div>
+
+                <!-- Form Section -->
+                <div class="card-body p-5">
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <!-- Username -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Username
+                            </label>
+
+                            {{ form.username }}
+
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Password
+                            </label>
+
+                            {{ form.password }}
+
+                        </div>
+
+                        <!-- Login Button -->
+                        <button type="submit"
+                                class="btn btn-primary w-100 py-2 fw-semibold shadow-sm">
+
+                            Login
+
+                        </button>
+
+                    </form>
+
+                    <!-- Register Link -->
+                    <div class="text-center mt-4">
+
+                        <p class="mb-0 text-muted">
+
+                            Don't have an account?
+
+                            <a href="/register/"
+                               class="text-decoration-none fw-semibold">
+
+                                Register Here
+
+                            </a>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,320 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold display-5 text-dark">
+            Add New Employee
+        </h1>
+
+        <p class="text-muted fs-5 mt-3">
+            Create and manage employee profiles professionally.
+        </p>
+
+    </div>
+
+    <!-- Form Card -->
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden form-card">
+
+        <!-- Card Header -->
+        <div class="text-white p-4"
+             style="background: linear-gradient(90deg, #0f172a, #1e3a8a);">
+
+            <h3 class="fw-bold mb-1">
+                Employee Information
+            </h3>
+
+            <p class="mb-0 text-light">
+                Complete all required details carefully.
+            </p>
+
+        </div>
+
+        <!-- Form Body -->
+        <div class="card-body p-5">
+
+            <form method="POST"
+                  enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <!-- PERSONAL DETAILS -->
+                <div class="section-box mb-5">
+
+                    <div class="section-heading">
+
+                        <div class="section-icon bg-primary-subtle">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <h4 class="fw-bold mb-1">
+                                Personal Details
+                            </h4>
+
+                            <p class="text-muted mb-0">
+                                Employee basic information
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-4 g-4">
+
+                        <div class="col-md-6">
+
+                            <label class="form-label fw-semibold">
+                                Full Name
+                            </label>
+
+                            {{ form.name }}
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label fw-semibold">
+                                Age
+                            </label>
+
+                            {{ form.age }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CONTACT DETAILS -->
+                <div class="section-box mb-5">
+
+                    <div class="section-heading">
+
+                        <div class="section-icon bg-success-subtle">
+                            📞
+                        </div>
+
+                        <div>
+
+                            <h4 class="fw-bold mb-1">
+                                Contact Details
+                            </h4>
+
+                            <p class="text-muted mb-0">
+                                Employee communication information
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-4 g-4">
+
+                        <div class="col-md-6">
+
+                            <label class="form-label fw-semibold">
+                                Email Address
+                            </label>
+
+                            {{ form.email }}
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label fw-semibold">
+                                Phone Number
+                            </label>
+
+                            {{ form.phone }}
+
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <label class="form-label fw-semibold">
+                                Address
+                            </label>
+
+                            {{ form.address }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- JOB DETAILS -->
+                <div class="section-box mb-5">
+
+                    <div class="section-heading">
+
+                        <div class="section-icon bg-warning-subtle">
+                            💼
+                        </div>
+
+                        <div>
+
+                            <h4 class="fw-bold mb-1">
+                                Job Details
+                            </h4>
+
+                            <p class="text-muted mb-0">
+                                Department and salary details
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-4 g-4">
+
+                        <div class="col-md-6">
+
+                            <label class="form-label fw-semibold">
+                                Department
+                            </label>
+
+                            {{ form.department }}
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="form-label fw-semibold">
+                                Salary
+                            </label>
+
+                            {{ form.salary }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- PROFILE IMAGE -->
+                <div class="section-box">
+
+                    <div class="section-heading">
+
+                        <div class="section-icon bg-danger-subtle">
+                            🖼️
+                        </div>
+
+                        <div>
+
+                            <h4 class="fw-bold mb-1">
+                                Profile Image
+                            </h4>
+
+                            <p class="text-muted mb-0">
+                                Upload employee profile photo
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+
+                        {{ form.profile_image }}
+
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-end gap-3 mt-5">
+
+                    <a href="{% url 'employee_list' %}"
+                       class="btn btn-outline-secondary rounded-pill px-5 py-2">
+
+                        Cancel
+
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-success rounded-pill px-5 py-2 shadow-sm">
+
+                        Save Employee
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Styling -->
+<style>
+
+    .form-card{
+        background:white;
+        transition:0.3s ease;
+    }
+
+    .form-card:hover{
+        transform:translateY(-3px);
+        box-shadow:0 15px 40px rgba(0,0,0,0.12)!important;
+    }
+
+    .section-box{
+        padding-bottom:10px;
+        border-bottom:1px solid #f1f5f9;
+    }
+
+    .section-heading{
+        display:flex;
+        align-items:center;
+        gap:18px;
+    }
+
+    .section-icon{
+        width:65px;
+        height:65px;
+        border-radius:18px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:28px;
+        flex-shrink:0;
+    }
+
+    input,
+    textarea,
+    select{
+        width:100%;
+        border-radius:14px!important;
+        padding:14px!important;
+        border:1px solid #d1d5db!important;
+        transition:0.3s;
+        background:#fff;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus{
+        border-color:#2563eb!important;
+        box-shadow:0 0 0 4px rgba(37,99,235,0.12)!important;
+        outline:none!important;
+    }
+
+    textarea{
+        min-height:120px;
+    }
+
+</style>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <img src="{{ employee.profile_image.url }}"
+             class="img-fluid rounded">
+
+    </div>
+
+    <div class="col-md-8">
+
+        <h2>{{ employee.name }}</h2>
+
+        <hr>
+
+        <p><b>Age:</b> {{ employee.age }}</p>
+
+        <p><b>Email:</b> {{ employee.email }}</p>
+
+        <p><b>Phone:</b> {{ employee.phone }}</p>
+
+        <p><b>Department:</b> {{ employee.department }}</p>
+
+        <p><b>Salary:</b> {{ employee.salary }}</p>
+
+        <p><b>Address:</b> {{ employee.address }}</p>
+
+        <a href="/update/{{ employee.id }}/"
+           class="btn btn-warning">
+
+            Edit
+
+        </a>
+
+        <a href="/"
+           class="btn btn-secondary">
+
+            Back
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

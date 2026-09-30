@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Top Welcome Section -->
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold display-5"
+            style="color:#0f172a;">
+
+            Employee Dashboard
+
+        </h1>
+
+        <p class="text-muted fs-5 mt-3">
+
+            Manage employees, monitor records, and control your workspace efficiently.
+
+        </p>
+
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="row g-4 justify-content-center">
+
+        <!-- Employee List -->
+        <div class="col-md-6 col-lg-3">
+
+            <div class="card border-0 rounded-4 shadow-lg h-100 dashboard-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="icon-box bg-primary-subtle mb-4">
+                        👨‍💼
+                    </div>
+
+                    <h4 class="fw-bold mb-3">
+                        Employee List
+                    </h4>
+
+                    <p class="text-muted mb-4">
+
+                        View and manage employee information and records.
+
+                    </p>
+
+                    <a href="{% url 'employee_list' %}"
+                       class="btn btn-primary w-100 rounded-pill py-2">
+
+                        View Employees
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Add Employee -->
+        <div class="col-md-6 col-lg-3">
+
+            <div class="card border-0 rounded-4 shadow-lg h-100 dashboard-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="icon-box bg-success-subtle mb-4">
+                        ➕
+                    </div>
+
+                    <h4 class="fw-bold mb-3">
+                        Add Employee
+                    </h4>
+
+                    <p class="text-muted mb-4">
+
+                        Add new employees quickly into the management system.
+
+                    </p>
+
+                    <a href="{% url 'add_employee' %}"
+                       class="btn btn-success w-100 rounded-pill py-2">
+
+                        Add Employee
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Change Password -->
+        <div class="col-md-6 col-lg-3">
+
+            <div class="card border-0 rounded-4 shadow-lg h-100 dashboard-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="icon-box bg-warning-subtle mb-4">
+                        🔒
+                    </div>
+
+                    <h4 class="fw-bold mb-3">
+                        Security
+                    </h4>
+
+                    <p class="text-muted mb-4">
+
+                        Update your account password and improve account security.
+
+                    </p>
+
+                    <a href="{% url 'change_password' %}"
+                       class="btn btn-warning w-100 rounded-pill py-2">
+
+                        Change Password
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Logout -->
+        <div class="col-md-6 col-lg-3">
+
+            <div class="card border-0 rounded-4 shadow-lg h-100 dashboard-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="icon-box bg-danger-subtle mb-4">
+                        🚪
+                    </div>
+
+                    <h4 class="fw-bold mb-3">
+                        Logout
+                    </h4>
+
+                    <p class="text-muted mb-4">
+
+                        Securely sign out from your employee management account.
+
+                    </p>
+
+                    <form action="{% url 'logout' %}" method="POST">
+
+                        {% csrf_token %}
+
+                        <button type="submit"
+                                class="btn btn-danger w-100 rounded-pill py-2">
+
+                            Logout
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Extra Styling -->
+<style>
+
+    .dashboard-card{
+        transition:0.3s ease;
+        background:white;
+    }
+
+    .dashboard-card:hover{
+        transform:translateY(-8px);
+        box-shadow:0 12px 30px rgba(0,0,0,0.15)!important;
+    }
+
+    .icon-box{
+        width:80px;
+        height:80px;
+        margin:auto;
+        border-radius:20px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:35px;
+    }
+
+</style>
+
+{% endblock %}

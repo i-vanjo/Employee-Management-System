@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+    Edit Employee
+
+</h2>
+
+<form method="POST"
+      enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit"
+            class="btn btn-success">
+
+        Update Employee
+
+    </button>
+
+</form>
+
+{% endblock %}

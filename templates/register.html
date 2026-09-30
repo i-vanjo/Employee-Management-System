@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center align-items-center"
+         style="min-height:85vh;">
+
+        <div class="col-lg-6">
+
+            <!-- Main Card -->
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden register-card">
+
+                <!-- Top Banner -->
+                <div class="text-white p-5 text-center"
+                     style="background: linear-gradient(90deg, #0f172a, #1e3a8a);">
+
+                    <div class="register-icon mb-3">
+                        👤
+                    </div>
+
+                    <h1 class="fw-bold mb-2">
+                        Create Account
+                    </h1>
+
+                    <p class="mb-0 text-light fs-5">
+
+                        Join the Employee Management System
+
+                    </p>
+
+                </div>
+
+                <!-- Form Section -->
+                <div class="card-body p-5">
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <!-- Username -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Username
+                            </label>
+
+                            {{ form.username }}
+
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Password
+                            </label>
+
+                            {{ form.password1 }}
+
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Confirm Password
+                            </label>
+
+                            {{ form.password2 }}
+
+                        </div>
+
+                        <!-- Password Tips -->
+                        <div class="alert border rounded-4 mb-4"
+                             style="background:#f8fafc;">
+
+                            <h6 class="fw-bold mb-2">
+                                Password Tips
+                            </h6>
+
+                            <ul class="mb-0 text-muted">
+
+                                <li>Minimum 8 characters</li>
+                                <li>Use uppercase and lowercase letters</li>
+                                <li>Include numbers and symbols</li>
+
+                            </ul>
+
+                        </div>
+
+                        <!-- Button -->
+                        <button type="submit"
+                                class="btn btn-success w-100 rounded-pill py-3 fw-semibold shadow-sm">
+
+                            Create Account
+
+                        </button>
+
+                    </form>
+
+                    <!-- Login Link -->
+                    <div class="text-center mt-4">
+
+                        <p class="text-muted mb-0">
+
+                            Already have an account?
+
+                            <a href="{% url 'login' %}"
+                               class="fw-semibold text-decoration-none">
+
+                                Login Here
+
+                            </a>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Styling -->
+<style>
+
+    .register-card{
+        transition:0.3s ease;
+        background:white;
+    }
+
+    .register-card:hover{
+        transform:translateY(-4px);
+        box-shadow:0 18px 45px rgba(0,0,0,0.12)!important;
+    }
+
+    .register-icon{
+        width:85px;
+        height:85px;
+        margin:auto;
+        background:rgba(255,255,255,0.15);
+        border-radius:24px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:40px;
+    }
+
+    input{
+        width:100%;
+        border-radius:14px!important;
+        padding:14px!important;
+        border:1px solid #d1d5db!important;
+        transition:0.3s;
+        background:white;
+    }
+
+    input:focus{
+        border-color:#2563eb!important;
+        box-shadow:0 0 0 4px rgba(37,99,235,0.12)!important;
+        outline:none!important;
+    }
+
+</style>
+
+{% endblock %}
